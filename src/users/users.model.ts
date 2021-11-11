@@ -22,6 +22,14 @@ export class User extends Model<User, UserCreationAttr> {
   @Column({type: DataType.STRING, allowNull: false})
   password: string;
 
+  @ApiProperty({example: 'true', description: 'Пользователь заблокирован'})
+  @Column({type: DataType.BOOLEAN, allowNull: false})
+  expired: boolean;
+
+  @ApiProperty({example: 'Уволен', description: 'Причина блокировки'})
+  @Column({type: DataType.STRING, allowNull: false})
+  expiredReason: string;
+
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[]
 }
